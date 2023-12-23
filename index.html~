@@ -1,0 +1,238 @@
+<html><head>
+  <script language="JavaScript" type="text/javascript" src="index_files/calc"></script>
+ 
+  <meta name="Author" content="Victor Matveev">
+  <meta name="description" content="Calcium Calculator example script files">
+  <meta name="Keywords" content="Calcium Calculator, scripts, CalC, download, calcium diffusion, calcium buffering">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example Script Files for the "Calcium Calculator" Simulator</title> 
+
+
+
+<link rel="STYLESHEET" type="text/css" href="index_files/victor.css">
+
+<style type="text/css">
+
+   A.SCRIPT:link {font-family:sans-serif; text-decoration:none;  font-size:8pt; font-style:bold; color:red; }
+   A.SCRIPT:visited {font-family:sans-serif; text-decoration:none;  font-size:8pt; font-style:bold;  color: maroon; }
+   A.SCRIPT:active {font-family:sans-serif; text-decoration:none;  font-size:8pt; font-style:bold;   color: magenta; }
+   A.SCRIPT:hover {font-family:sans-serif; text-decoration:underline;  font-size:8pt; font-style:bold;   color: magenta; }
+
+   CODE {font-size:8pt; color:#550055;}
+
+   BODY {font-size:8pt; font-family:sans-serif;  }  
+   TD   {font-size:8pt; font-family:sans-serif;  }  
+   TD.color {font-size:8pt; color:#000000; font-family:sans-serif; background-color:#F0F0F0; padding:4pt; }  
+   SUP {font-size:6pt; font-family:sans-serif;  }  
+   SUB {font-size:6pt; font-family:sans-serif;  }  
+/*       BODY {font-size:small; font-family:sans-serif;  } */
+   H4 {color: darkred; }
+/*       UL {font-size:small;} */
+/*       LI {font-size:small;} */
+
+</style>
+
+<!-- base href="http://web.njit.edu/~matveev/calc/examples/Buffer_Saturation_Model/" --><!-- ===============================================================================
+                               B  O  D  Y
+=============================================================================== -->
+
+<script language="JavaScript" type="text/javascript">
+makeTitle("Calcium Calculator Simulation Script Files");
+</script></head>
+
+
+<body><table width="600"><tbody><tr><td class="title" colspan="5" height="33" width="100%">Calcium Calculator Simulation Script Files</td></tr><tr><td class="TCALC"><a class="TMENU" href="http://web.njit.edu/%7Ematveev/calc.html" target="_self">CalC Download</a></td> <td class="TCALC"><a class="TMENU" href="http://web.njit.edu/%7Ematveev/calc/manual.html" target="_self">CalC Manual</a></td> <td class="TCALC"><a class="TMENU" href="http://web.njit.edu/%7Ematveev/calc/scripts.html" target="_self">CalC Scripts</a></td> <td class="TCALC"><a class="TMENU" href="http://web.njit.edu/%7Ematveev/calc/calc_pub.html" target="_self">CalC Publications</a></td> <td class="TMENU"><a class="TMENU" href="http://web.njit.edu/%7Ematveev/" target="_top">Victor's Homepage</a></td> </tr></tbody></table><br>
+<br>
+
+<!--font color=maroon>Under construction</font><br><br><br-->
+
+The scripts following below reproduce the simulation results presented
+in the manuscript (see <a href="http://web.njit.edu/%7Ematveev/documents/BSMfigures.pdf">Figures</a>):<br>
+<table border="1" cellpadding="3"><tbody><tr><td class="color">
+<a href="http://web.njit.edu/%7Ematveev/" target="_top">V. Matveev</a>,
+<a href="http://mcb.berkeley.edu/faculty/NEU/zuckerr.html" target="_top">R.S. Zucker</a>,
+<a href="http://mrb.niddk.nih.gov/sherman/" target="_top">A. Sherman</a> (2004) <br>
+<b>Facilitation through Buffer Saturation: Constraints on
+Endogenous Buffering Properties</b><br>
+Biophysical Journal, <b>86</b>:2691-2709
+<a href="http://www.biophysj.org/cgi/content/abstract/86/5/2691">[ Abstract ]</a>
+<a href="http://www.biophysj.org/cgi/content/full/86/5/2691">[ Full Text ]</a>
+<a href="http://web.njit.edu/%7Ematveev/documents/BufSat.pdf">[ PDF (545 KB) ]</a><br>
+
+</td></tr></tbody></table>
+
+The comments in these script files 
+provide a detailed step-by-step 
+description of the simulations.
+
+<br><br><hr><br>
+
+<!-- ===============================================================================
+                          MAIN  TABLE
+=============================================================================== -->
+
+<table width="600" cellpadding="2"><tbody><tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_main.par" class="SCRIPT">FCT_main.par</a> 
+</td><td>
+script containing the main definitions. Place it in the
+same directory with the scripts below before running any of the simulations. Under Windows, file operations do not 
+default to current directory (a nuisance!), so make sure that the parameter <code>path</code> defined in scripts below
+points to the directory where "FCT_main.par" is residing.<br>
+</td></tr>
+<tr><td colspan="2"><hr></td></tr>
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig4.par" class="SCRIPT">FCT_Fig4.par</a>
+</td><td>
+reproduces Figs. 2 and 4 of the manuscript. This script requires
+a command line parameter specifying the total buffer concentration. Execute <code>calc FCT_Fig4.par 500</code> to
+reproduce Figs. 2 and 4B.
+<br><br>
+</td></tr>
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig7.par" class="SCRIPT">FCT_Fig7.par</a>
+</td><td>
+reproduces Figs. 6B and 7. Accepts a command-line string parameter,
+<code>control</code> or <code>fura</code>, specifying whether Fura-2 should be included in the simulation. 
+Execute <code>calc FCT_Fig7.par control</code> to reproduce data in Figs. 6B and 7 (control curve).
+<br><br>
+</td></tr>
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig11.par" class="SCRIPT">FCT_Fig11.par</a>
+</td><td>
+reproduces Figs. 9B and 11. Accepts a command-line string parameter,
+<code>control</code> or <code>fura</code>, specifying whether Fura-2 should be included in the simulation. 
+Execute <code>calc FCT_Fig11.par control</code> to reproduce data in Figs. 6B and 11 (control curve).
+<br><br>
+</td></tr>
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig10.par" class="SCRIPT">FCT_Fig10.par</a>
+</td><td>
+produces the distance-dependent concentration plots in Fig. 10, 
+as a sequence of files ("Fig10.Ca.0ms through Fig.Ca.10ms", and "Fig10.B.0ms" through "Fig10.B.10ms") corresponding 
+to different times after the channel closing. You can use <code>gnuplot</code> to view these files, i.e. 
+<code>gnuplot 'Fig10.Ca.1ms' w lines</code>.
+<br><br>
+</td></tr>
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_decay.par" class="SCRIPT">FCT_decay.par</a>
+</td><td>
+reproduces the decay time course of facilitation shown in Fig. 12. It requires two command-line parameters:<br>
+1. The first argument accepts values of <code>A</code> and <code>B</code>, corresponding to the mobile and the fixed buffer cases, 
+respectively. <br>
+2. The second argument accepts values of <code>control</code> and <code>fura</code>, and specifies whether Fura-2 is to be included
+in the simulation.<br>
+To reproduce, for example, the Fura-2 data in Fig. 12 B, execute<br> <code>calc  FCT_decay.par  B  fura </code>.
+<br><br>
+</td></tr>
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig3.par" class="SCRIPT">FCT_Fig3.par</a>
+</td><td>
+produces the data for the parameter-sweep plots in Fig. 3; requires a command-line parameter
+specifying the unbinding rate, <code>k<sub>off</sub></code>. For instance, execute 
+<code>calc FCT_Fig3.par 0.4</code>. The resulting file will be called 
+<code>FCT_vs_Btotal_and_KD_koff0.4</code>, and will contain four columns, in the format:
+<code>B<sub>total</sub>  K<sub>D</sub> P<sub>1</sub> P<sub>5</sub></code>.
+One can use <code>gnuplot</code> to visualize the results: at the gnuplot prompt, type 
+<code>splot 'FCT_vs_Btotal_and_KD_koff0.4' u 1:2:($4/$3) w lines</code>. This will make a surface 
+plot of the ratio of the 4th and 1st columns, equal to the <code>P<sub>5</sub>/P<sub>1</sub></code> value.
+<br><br>
+</td></tr>
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig5.par" class="SCRIPT">FCT_Fig5.par</a>
+</td><td>
+produces the data for the parameter-sweep plots in Figs. 5 and 6A; requires a command-line parameter
+specifying the buffering capacity, <code>&#954;<sub>0</sub></code>. For instance, execute 
+<code>calc FCT_Fig5.par 500</code>. The resulting file will be called 
+<code>FCT_vs_Btotal_and_kon_kappa500</code>, and will contain eight columns, in the format:
+<code>B<sub>total</sub>  k<sub>on</sub> P<sub>1</sub><sup>1</sup> P<sub>5</sub><sup>1</sup> 
+P<sub>1</sub><sup>2</sup> P<sub>5</sub><sup>2</sup> P<sub>1</sub><sup>3</sup> P<sub>5</sub><sup>3</sup></code>
+where <code>P<sub>1</sub><sup>i</sup> P<sub>5</sub><sup>i</sup></code> are respectively the 1st and 5th
+Ca<sup>2+</sup> transients at the <code>i-th</code> site (see Fig. 1).
+One can use <code>gnuplot</code> to visualize the results: at the gnuplot prompt, type 
+<code>splot 'FCT_vs_Btotal_and_kon_kappa500' u 1:2:($6/$5) w lines</code>. This will make a surface 
+plot of the ratio of the 4th and 1st columns, equal to the 
+<code>P<sub>1</sub><sup>2</sup>/P<sub>5</sub><sup>2</sup></code> value.
+
+<br><br>
+</td></tr>
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig13.par" class="SCRIPT">FCT_Fig13.par</a>
+</td><td>
+produces the data for the parameter-sweep plots in Fig. 13. Same as 
+<code>FCT_Fig5.par</code> script above, but with a low-affinity buffer added. Requires a 
+command-line parameter specifying the buffering capacity, <code>&#954;<sub>0</sub></code>.
+For instance, execute <code>calc FCT_Fig13.par 500</code>. The resulting file will be called 
+<code>FCT_vs_Btotal_and_kon_2buffer_kappa500</code>
+
+<br><br>
+</td></tr>
+
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig9.par" class="SCRIPT">FCT_Fig9.par</a>
+</td><td>
+produces the data for the parameter-sweep plots in Fig. 9. Same as 
+<code>FCT_Fig5.par</code> script above, but with a fixed buffer, and different parameter ranges.
+Requires a 
+command-line parameter specifying the buffering capacity, <code>&#954;<sub>0</sub></code>.
+Execute <code>calc FCT_Fig9.par 500</code>. The resulting file will be called 
+<code>FCT_vs_Btotal_and_kon_fixed500</code><br><br>
+</td></tr>
+
+<!-- =============================================================================== -->
+
+<tr><td valign="top">
+<font color="red">&#9830;</font>&nbsp;<a href="http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig8B.par" class="SCRIPT">FCT_Fig8.par</a><br>
+</td><td>
+produces the data for the parameter-sweep plot of Fig. 8B.
+
+<br><br>
+</td></tr></tbody></table>
+
+<!-- =============================================================================== -->
+<!-- =============================================================================== -->
+
+
+<!-- table cellpadding=3><tr><td bgcolor="#E0FFEA">
+<a href="../scripts.html">[ Back to Scripts ]</a>
+</td></tr></table -->
+<hr>
+<address>
+<small>
+<a href="http://web.njit.edu/%7Ematveev" target="_top">Victor Matveev</a>
+</small>
+</address>
+<small>
+This server is running a 
+<a href="http://www.redhat.com/" target="_top">Redhat</a> distribution of 
+<a href="http://www.linux.org/" target="_top">Linux</a>.
+<br>
+<!-- Created: Sun Apr 12 18:25:17 EDT 1998 -->
+<!-- hhmts start -->
+Last modified: Wed Jan 14, 2004
+<!-- hhmts end -->
+</small>
+
+</body></html>
