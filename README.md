@@ -1,0 +1,56 @@
+# Calcium Calculator Simulation Script Files
+
+The scripts following below reproduce the simulation results presented
+in the manuscript (see [Figures](http://web.njit.edu/%7Ematveev/documents/BSMfigures.pdf)):
+
+|                                                                                   |
+|-----------------------------------------------------------------------------------|
+| [V. Matveev](http://web.njit.edu/%7Ematveev/), [R.S. Zucker](http://mcb.berkeley.edu/faculty/NEU/zuckerr.html), [A. Sherman](http://mrb.niddk.nih.gov/sherman/) (2004)  |
+| **Facilitation through Buffer Saturation: Constraints on Endogenous Buffering Properties**
+  *Biophysical Journal*, **86**:2691-2709
+  [ Abstract ](http://www.biophysj.org/cgi/content/abstract/86/5/2691)
+  [ Full Text ](http://www.biophysj.org/cgi/content/full/86/5/2691)
+  [ PDF (545 KB) ](http://web.njit.edu/%7Ematveev/documents/BufSat.pdf)  |
+
+The comments in these script files
+provide a detailed step-by-step
+description of the simulations.
+
+---
+
+## Script Files
+
+| Script                                                                                                                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ♦ [FCT_main.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_main.par)                             | Script containing the main definitions. Place it in the same directory with the scripts below before running any of the simulations. Under Windows, file operations do not default to current directory (a nuisance!), so make sure that the parameter `path` defined in scripts below points to the directory where "FCT_main.par" is residing.                                                                                                                                    |
+| ♦ [FCT_Fig4.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig4.par)                             | Reproduces Figs. 2 and 4 of the manuscript. This script requires a command line parameter specifying the total buffer concentration. Execute `calc FCT_Fig4.par 500` to reproduce Figs. 2 and 4B.                                                                                                                                                                                                                                                                                                                             |
+| ♦ [FCT_Fig7.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig7.par)                             | Reproduces Figs. 6B and 7. Accepts a command-line string parameter, `control` or `fura`, specifying whether Fura-2 should be included in the simulation. Execute `calc FCT_Fig7.par control` to reproduce data in Figs. 6B and 7 (control curve).                                                                                                                                                                                                                                                                            |
+| ♦ [FCT_Fig11.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig11.par)                           | Reproduces Figs. 9B and 11. Accepts a command-line string parameter, `control` or `fura`, specifying whether Fura-2 should be included in the simulation. Execute `calc FCT_Fig11.par control` to reproduce data in Figs. 6B and 11 (control curve).                                                                                                                                                                                                                                                                        |
+| ♦ [FCT_Fig10.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig10.par)                           | Produces the distance-dependent concentration plots in Fig. 10, as a sequence of files ("Fig10.Ca.0ms through Fig.Ca.10ms", and "Fig10.B.0ms" through "Fig10.B.10ms") corresponding to different times after the channel closing. You can use `gnuplot` to view these files, i.e. `gnuplot 'Fig10.Ca.1ms' w lines`.                                                                                                                                                                                                         |
+| ♦ [FCT_decay.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_decay.par)                           | Reproduces the decay time course of facilitation shown in Fig. 12. It requires two command-line parameters:
+1. The first argument accepts values of `A` and `B`, corresponding to the mobile and the fixed buffer cases, respectively.
+2. The second argument accepts values of `control` and `fura`, and specifies whether Fura-2 is to be included in the simulation.
+To reproduce, for example, the Fura-2 data in Fig. 12 B, execute `calc  FCT_decay.par  B  fura`.                                                                                                                                                                               |
+| ♦ [FCT_Fig3.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig3.par)                             | Produces the data for the parameter-sweep plots in Fig. 3; requires a command-line parameter specifying the unbinding rate, `k_off`. For instance, execute `calc FCT_Fig3.par 0.4`. The resulting file will be called `FCT_vs_Btotal_and_KD_koff0.4`, and will contain four columns, in the format:
+`B_total  K_D P_1 P_5`.
+One can use `gnuplot` to visualize the results: at the gnuplot prompt, type
+`splot 'FCT_vs_Btotal_and_KD_koff0.4' u 1:2:($4/$3) w lines`. This will make a surface plot of the ratio of the 4th and 1st columns, equal to the `P_5/P_1` value. |
+| ♦ [FCT_Fig5.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig5.par)                             | Produces the data for the parameter-sweep plots in Figs. 5 and 6A; requires a command-line parameter specifying the buffering capacity, `κ_0`. For instance, execute `calc FCT_Fig5.par 500`. The resulting file will be called `FCT_vs_Btotal_and_kon_kappa500`, and will contain eight columns, in the format:
+`B_total  k_on P_1^1 P_5^1 P_1^2 P_5^2 P_1^3 P_5^3`
+where `P_1^i P_5^i` are respectively the 1st and 5th Ca²⁺ transients at the `i-th` site (see Fig. 1).
+One can use `gnuplot` to visualize the results: at the gnuplot prompt, type
+`splot 'FCT_vs_Btotal_and_kon_kappa500' u 1:2:($6/$5) w lines`. This will make a surface plot of the ratio of the 4th and 1st columns, equal to the `P_1^2/P_5^2` value.                                                           |
+| ♦ [FCT_Fig13.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig13.par)                         | Produces the data for the parameter-sweep plots in Fig. 13. Same as `FCT_Fig5.par` script above, but with a low-affinity buffer added. Requires a command-line parameter specifying the buffering capacity, `κ_0`. For instance, execute `calc FCT_Fig13.par 500`. The resulting file will be called `FCT_vs_Btotal_and_kon_2buffer_kappa500`.                                                                                                                                                     |
+| ♦ [FCT_Fig9.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig9.par)                           | Produces the data for the parameter-sweep plots in Fig. 9. Same as `FCT_Fig5.par` script above, but with a fixed buffer, and different parameter ranges. Requires a command-line parameter specifying the buffering capacity, `κ_0`. Execute `calc FCT_Fig9.par 500`. The resulting file will be called `FCT_vs_Btotal_and_kon_fixed500`.                                                                                                                                                          |
+| ♦ [FCT_Fig8.par](http://web.njit.edu/%7Ematveev/calc/examples/Buffer_Saturation_Model/FCT_Fig8B.par)                           | Produces the data for the parameter-sweep plot of Fig. 8B.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+---
+
+Victor Matveev
+This server is running a [Redhat](http://www.redhat.com/) distribution of [Linux](http://www.linux.org/).
+
+Last modified: Wed Jan 14, 2004
+
+---
+
+2025-06-02: Converted README to Markdown.
